@@ -8,7 +8,7 @@ const app = express()
 //multer module
 const multer = require('multer')
 //import mergepdfs async function in server.js
-const {mergepdfs} = require('./merge')
+const {mergerpdfs} = require('./merge')
 
 const upload = multer({ dest: 'uploads/'})
 app.use('/static', express.static('public'))
@@ -25,7 +25,7 @@ app.post('/merge', upload.array('pdfs', 2), /*function*/ async (req, res,next) =
 
   console.log(req.files)
   //fuction call : mergerpdfs which we import from testpdfs.js
-  let d = await mergepdfs(path.join(__dirname, req.files[0].path) , path.join(__dirname, req.files[1].path))
+  let d = await mergerpdfs(path.join(__dirname, req.files[0].path) , path.join(__dirname, req.files[1].path))
 
   // now we are not sending res.send intead we do redirect
   //res.send({data: req.files})
@@ -39,3 +39,4 @@ app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)
 })
 
+// how to add (192.168.1.4:3000) in port in expree?
